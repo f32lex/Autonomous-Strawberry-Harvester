@@ -1,0 +1,42 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+    # The broadcaster publishes the joint states to TF
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    # The controller moves the arm
+    scaled_joint_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+    
+    # Moves end effector
+    # gripper_controller:
+    #   type: joint_trajectory_controller/JointTrajectoryController
+
+scaled_joint_trajectory_controller:
+  ros__parameters:
+    joints:
+      - shoulder_pan_joint
+      - shoulder_lift_joint
+      - elbow_joint
+      - wrist_1_joint
+      - wrist_2_joint
+      - wrist_3_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+
+# gripper_controller:
+#   ros__parameters:
+#     joints:
+#       - robotiq_85_left_knuckle_joint
+#     command_interfaces:
+#       - position
+#     state_interfaces:
+#       - position
+#     state_publish_rate: 100.0
+#     action_monitor_rate: 20.0

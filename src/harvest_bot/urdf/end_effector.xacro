@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="custom_ee" params="parent_link">
+    
+    <joint name="ee_mount_joint" type="fixed">
+      <parent link="${parent_link}"/>
+      <child link="ee_base_link"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <link name="ee_base_link">
+      <visual>
+        <geometry><box size="0.08 0.08 0.05"/></geometry>
+        <material name="grey"><color rgba="0.5 0.5 0.5 1"/></material>
+      </visual>
+      <collision><geometry><box size="0.08 0.08 0.05"/></geometry></collision>
+    </link>
+
+    <joint name="camera_mount_joint" type="fixed">
+      <parent link="ee_base_link"/>
+      <child link="camera_mount"/>
+      <origin xyz="0.05 0 0.06" rpy="0 0 0"/> 
+    </joint>
+    <link name="camera_mount"/>
+
+    <joint name="cutter_joint" type="revolute">
+      <parent link="ee_base_link"/>
+      <child link="cutter_blade"/>
+      <origin xyz="0.04 0.0 0.0" rpy="0 0 0"/> 
+      <axis xyz="0 0 1"/> 
+      <limit lower="0.0" upper="0.6" effort="5.0" velocity="2.0"/>
+    </joint>
+    
+    <link name="cutter_blade">
+      <visual>
+        <geometry><box size="0.1 0.02 0.002"/></geometry> 
+        <material name="silver"><color rgba="0.9 0.9 0.9 1"/></material>
+      </visual>
+      <collision>
+        <geometry><box size="0.1 0.02 0.002"/></geometry>
+      </collision>
+    </link>
+
+    <joint name="tcp_joint" type="fixed">
+      <parent link="ee_base_link"/>
+      <child link="tcp_link"/>
+      <origin xyz="0.15 0 0" rpy="0 0 0"/>
+    </joint>
+    <link name="tcp_link"/>
+  </xacro:macro>
+</robot>

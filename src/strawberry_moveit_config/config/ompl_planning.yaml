@@ -1,0 +1,42 @@
+planning_plugin: ompl_interface/OMPLPlanner
+request_adapters: >-
+  default_planner_request_adapters/AddTimeOptimalParameterization
+  default_planner_request_adapters/ResolveConstraintFrames
+  default_planner_request_adapters/FixWorkspaceBounds
+  default_planner_request_adapters/FixStartStateBounds
+  default_planner_request_adapters/FixStartStateCollision
+  default_planner_request_adapters/FixStartStatePathConstraints
+
+planner_configs:
+  # old default
+  RRTConnect:
+    type: geometric::RRTConnect
+    range: 0.0
+  
+  # new default
+  RRTstar:
+    type: geometric::RRTstar
+    range: 0.0
+    goal_bias: 0.05
+    delay_collision_checking: 1
+
+  # User requested TRRT
+  TRRT:
+    type: geometric::TRRT
+    range: 0.0
+    goal_bias: 0.05
+    max_states_failed: 10
+    temp_change_factor: 2.0
+    min_temperature: 10e-10
+    init_temperature: 10e-6
+    frountier_threshold: 0.0
+    frountier_node_ratio: 0.1
+    k_constant: 0.0
+
+ur_manipulator:
+  # change default
+  default_planner_config: RRTConnect
+  planner_configs:
+    - RRTConnect
+    - RRTstar
+    - TRRT

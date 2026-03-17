@@ -1,0 +1,23 @@
+<robot name="strawberry_plant">
+  <link name="base">
+    <visual>
+      <geometry><cylinder length="0.2" radius="0.05"/></geometry>
+      <material name="brown"><color rgba="0.6 0.4 0.2 1"/></material>
+    </visual>
+    <collision><geometry><cylinder length="0.2" radius="0.05"/></geometry></collision>
+  </link>
+  
+  <link name="strawberry">
+    <visual>
+      <geometry><sphere radius="0.03"/></geometry>
+      <material name="red"><color rgba="1 0 0 1"/></material>
+    </visual>
+    <collision><geometry><sphere radius="0.03"/></geometry></collision>
+  </link>
+
+  <joint name="stem" type="fixed">
+    <parent link="base"/>
+    <child link="strawberry"/>
+    <origin xyz="0.1 0 0.3" rpy="0 0 0"/>
+  </joint>
+</robot>
