@@ -57,3 +57,6 @@ Configure parameters in the `config` directory to tune system performance based 
 - Motion planning parameters
 
 For detailed parameter descriptions, refer to the respective YAML files in the `config` folder.
+
+## For Detailed Documentation:
+https://docs.google.com/document/d/1esir7p0FkJVgVWjqnHWXH2XJ1bdMa-8ZjkeyV_7MFIA/edit?usp=sharing
